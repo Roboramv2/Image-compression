@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Compressor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
+  </head>
+  <body>
+    <center>
+      <h1>Upload Files</h1>
+      <div class="container">
+        <div class="sub-container">
+          <h2>Compress</h2>
+          <form
+            action="http://127.0.0.1:5000/imageuploader"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" name="image" id="image" class="input-file" />
+            <input type="submit" value="Upload" class="submit-btn" />
+          </form>
+        </div>
+
+        <div class="sub-container">
+          <h2>Decompress</h2>
+          <form
+            action="http://127.0.0.1:5000/npyuploader"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" name="npy" id="npy" class="input-file" />
+            <input type="submit" value="Upload" class="submit-btn" />
+          </form>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>
