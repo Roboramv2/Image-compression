@@ -20,6 +20,7 @@ app.config["CACHE_TYPE"] = "null"
 app.static_folder = 'static'
 f = ""
 original_filename =""
+cwd = str(os.getcwd())
 
 
 UPLOADS_PATH = join(dirname(realpath(__file__)), 'static\\')
@@ -39,12 +40,12 @@ def preprocess(path):
 
 @app.route('/')
 def upload_image():
-    if os.path.exists("C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\decompressed.jpg"):
-        os.remove("C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\decompressed.jpg")
-    if os.path.exists("C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\intermediate.jpg"):
-        os.remove("C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\intermediate.jpg")
-    if os.path.exists("C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\compressed.npy"):
-        os.remove("C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\compressed.npy")
+    if os.path.exists(cwd+"\\static\\decompressed.jpg"):
+        os.remove(cwd+"\\static\\decompressed.jpg")
+    if os.path.exists(cwd+"\\static\\intermediate.jpg"):
+        os.remove(cwd+"\\static\\intermediate.jpg")
+    if os.path.exists(cwd+"\\static\\compressed.npy"):
+        os.remove(cwd+"\\static\\compressed.npy")
     return render_template('index.html')
 
 @app.route('/imageuploader',methods=['GET','POST'])
@@ -54,18 +55,18 @@ def image_upload():
         f.save(os.path.join(UPLOADS_PATH,f.filename))
         original_filename = f.filename
       
-        path = "C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\"+f.filename
+        path = cwd+"\\static\\"+f.filename
         image = Image.open(path)
         img = preprocess(path)
 
         output = encoder.predict(img)
-        path = "C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\compressed"
+        path = cwd+"\\static\\compressed"
         np.save(path, output)
 
 
         img = np.resize(image, (28, 28,1)) 
         code = compressor.predict(img[None])[0]
-        path = "C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\intermediate.jpg"
+        path = cwd+"\\static\\intermediate.jpg"
         plt.imsave(path,code.reshape([code.shape[-1]//2,-1]))
         return render_template('compress.html',filename = f.filename)
 
@@ -82,13 +83,13 @@ def npy_upload():
         f = request.files['npy']
         f.save(os.path.join(UPLOADS_PATH,f.filename))
 
-        path = "C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\"+f.filename
+        path = cwd+"\\static\\"+f.filename
         compressed_img = np.load(path)
         
         decompressed_img = decoder.predict(compressed_img)
         decompressed_img = postprocess(decompressed_img)
         
-        path = "C:\\Users\\Sowmya\\Desktop\\LAB\\project\\static\\decompressed.jpg"
+        path = cwd+"\\static\\decompressed.jpg"
         cv2.imwrite(path, decompressed_img)
 
         return render_template('decompress.html',filename = original_filename)
