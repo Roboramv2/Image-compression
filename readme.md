@@ -3,13 +3,13 @@
 A project which performs compression and decompression of images from the MNIST dataset. 
 
 
-# Environment
+### Environment
 
  - Coded in python 3.8
  - Interactive python notebook editor - Google collab
 
 
-# Installation
+### Installation
 To run the flask app in a  windows environment
 
  1. Install python 3.8
