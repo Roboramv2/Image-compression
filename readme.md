@@ -1,3 +1,5 @@
+![Badge](https://img.shields.io/badge/Deployment-Pending-blue)
+
 # Image Compression and Decompression using Convolutional Autoencoders and K-means Clustering
 
 A project which performs compression and decompression of images from the MNIST dataset. 
