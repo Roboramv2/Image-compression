@@ -1,0 +1,8 @@
+create.py:
+use progan from tf to make a dataset
+
+extract.py:
+use the dataset to make test and train
+
+train.py:
+define, save, test models on the dataset
