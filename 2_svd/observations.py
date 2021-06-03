@@ -14,7 +14,7 @@ plt.plot(x, k30, color='#004cff', linewidth=2, label='k=30')
 plt.plot(x, k40, color='#1e00ff', linewidth=2, label='k=40')
 plt.plot(x, jpg, color='#8c00ff', linewidth=2, label='jpg')
 
-plt.xlabel("Image size (in 100000 pixel^2)")
+plt.xlabel("Image size (in 100000 pixels)")
 plt.ylabel("Storage size (in kB)")
 plt.legend()
 plt.show()
